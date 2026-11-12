@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "prefix": { "value": "keghuddle" },
+    "swaLocation": { "value": "centralus" },
+    "aadClientId": { "value": "<app registration client id>" },
+    "adminEmails": { "value": "kasey.gaddy@kegtus.com" },
+    "trainerEmails": { "value": "" },
+    "hcssMode": { "value": "off" }
+  }
+}

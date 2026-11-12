@@ -1,0 +1,148 @@
+{
+  "$comment": "Trainer console requires KE&G Microsoft sign-in and the trainer or admin role. The employee join page and its API are public; employees are verified with session code + employee ID. __TENANT_ID__ is replaced by the deploy workflow.",
+  "routes": [
+    {
+      "route": "/.auth/login/github",
+      "statusCode": 404
+    },
+    {
+      "route": "/.auth/login/twitter",
+      "statusCode": 404
+    },
+    {
+      "route": "/join",
+      "redirect": "/join/",
+      "statusCode": 301
+    },
+    {
+      "route": "/join/*",
+      "allowedRoles": [
+        "anonymous",
+        "authenticated"
+      ]
+    },
+    {
+      "route": "/favicon.svg",
+      "allowedRoles": [
+        "anonymous",
+        "authenticated"
+      ]
+    },
+    {
+      "route": "/assets/*",
+      "allowedRoles": [
+        "anonymous",
+        "authenticated"
+      ]
+    },
+    {
+      "route": "/vendor/*",
+      "allowedRoles": [
+        "anonymous",
+        "authenticated"
+      ]
+    },
+    {
+      "route": "/403.html",
+      "allowedRoles": [
+        "anonymous",
+        "authenticated"
+      ]
+    },
+    {
+      "route": "/api/join",
+      "methods": [
+        "POST"
+      ],
+      "allowedRoles": [
+        "anonymous",
+        "authenticated"
+      ]
+    },
+    {
+      "route": "/api/live/*",
+      "allowedRoles": [
+        "anonymous",
+        "authenticated"
+      ]
+    },
+    {
+      "route": "/api/roles",
+      "allowedRoles": [
+        "anonymous",
+        "authenticated"
+      ]
+    },
+    {
+      "route": "/api/manage/*",
+      "allowedRoles": [
+        "trainer",
+        "admin"
+      ]
+    },
+    {
+      "route": "/api/*",
+      "statusCode": 404
+    },
+    {
+      "route": "/",
+      "allowedRoles": [
+        "trainer",
+        "admin"
+      ]
+    },
+    {
+      "route": "/index.html",
+      "allowedRoles": [
+        "trainer",
+        "admin"
+      ]
+    }
+  ],
+  "responseOverrides": {
+    "401": {
+      "redirect": "/.auth/login/kegtus?post_login_redirect_uri=/",
+      "statusCode": 302
+    },
+    "403": {
+      "rewrite": "/403.html"
+    }
+  },
+  "auth": {
+    "rolesSource": "/api/roles",
+    "identityProviders": {
+      "customOpenIdConnectProviders": {
+        "kegtus": {
+          "registration": {
+            "clientIdSettingName": "AAD_CLIENT_ID",
+            "clientCredential": {
+              "clientSecretSettingName": "AAD_CLIENT_SECRET"
+            },
+            "openIdConnectConfiguration": {
+              "wellKnownOpenIdConfiguration": "https://login.microsoftonline.com/__TENANT_ID__/v2.0/.well-known/openid-configuration"
+            }
+          },
+          "login": {
+            "nameClaimType": "preferred_username",
+            "scopes": [
+              "openid",
+              "profile",
+              "email"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "globalHeaders": {
+    "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'",
+    "X-Frame-Options": "DENY",
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=()",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+  },
+  "mimeTypes": {
+    ".json": "application/json"
+  }
+}

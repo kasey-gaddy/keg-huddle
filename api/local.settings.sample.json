@@ -1,0 +1,20 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "STORE": "memory",
+    "SEED_DEMO": "true",
+    "TOKEN_SIGNING_KEY": "replace-with-a-long-random-string-for-local-use-only",
+    "APP_TIMEZONE": "America/Phoenix",
+    "ADMIN_EMAILS": "you@kegtus.com",
+    "TRAINER_EMAILS": "",
+    "ALLOWED_TENANT_ID": "",
+    "HCSS_MODE": "off",
+    "HCSS_MAPPING_VERIFIED": "false",
+    "HCSS_EMPLOYEE_KEY": "employeeCode",
+    "HCSS_CLIENT_ID": "",
+    "HCSS_CLIENT_SECRET": "",
+    "HCSS_SCOPES": "skills:read skills:write"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "keg-huddle",
+  "version": "0.1.0",
+  "private": true,
+  "description": "KE&G Huddle: live training engagement for Safety and L&D",
+  "scripts": {
+    "dev": "node dev/server.js",
+    "simulate": "node dev/simulate.js",
+    "test": "npm --prefix api test",
+    "postinstall": "npm --prefix api install"
+  },
+  "engines": { "node": ">=20" }
+}
